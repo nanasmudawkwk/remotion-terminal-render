@@ -33,24 +33,27 @@ jobs:
         run: |
           mkdir -p out
           ENTRY="src/index.ts"
-          if [ -f "src/index.tsx" ]; then ENTRY="src/index.tsx"; fi
-          if [ -f "src/index.js" ]; then ENTRY="src/index.js"; fi
-          if [ -f "src/index.jsx" ]; then ENTRY="src/index.jsx"; fi
-          if [ -f "src/Root.tsx" ]; then ENTRY="src/Root.tsx"; fi
-          if [ -f "index.ts" ]; then ENTRY="index.ts"; fi
-          if [ -f "index.tsx" ]; then ENTRY="index.tsx"; fi
+          if [ -f "src/index.ts" ]; then ENTRY="src/index.ts";
+          elif [ -f "src/index.tsx" ]; then ENTRY="src/index.tsx";
+          elif [ -f "src/index.js" ]; then ENTRY="src/index.js";
+          elif [ -f "src/index.jsx" ]; then ENTRY="src/index.jsx";
+          elif [ -f "index.ts" ]; then ENTRY="index.ts";
+          elif [ -f "index.tsx" ]; then ENTRY="index.tsx";
+          elif [ -f "index.js" ]; then ENTRY="index.js";
+          fi
 
           COMP=""
           if [ -f ".composition_id" ]; then
             COMP=$(cat .composition_id | tr -d '\r\n ')
           fi
 
-          echo "Detected entry: $ENTRY, composition: $COMP"
-          if [ -n "$COMP" ]; then
-            npx remotion render "$ENTRY" "$COMP" out/video.mp4 --concurrency=2 --gl=angle
-          else
-            npx remotion render "$ENTRY" out/video.mp4 --concurrency=2 --gl=angle
+          if [ -z "$COMP" ]; then
+            # Extract first composition from Root or default to TerminalLesson
+            COMP=$(grep -o 'id="[^"]*"' src/Root.* 2>/dev/null | head -n 1 | cut -d'"' -f2 || echo "TerminalLesson")
           fi
+
+          echo "Rendering with entry: $ENTRY, composition: $COMP"
+          npx remotion render "$ENTRY" "$COMP" out/video.mp4 --concurrency=2 --gl=angle
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v4
