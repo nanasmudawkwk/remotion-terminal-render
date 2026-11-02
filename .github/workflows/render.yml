@@ -29,10 +29,28 @@ jobs:
       - name: Ensure Remotion Browser
         run: npx remotion browser ensure
 
-      - name: Render Remotion Video
+      - name: Detect entry and render
         run: |
           mkdir -p out
-          npx remotion render src/index.ts TerminalLesson out/video.mp4 --concurrency=2 --gl=angle
+          ENTRY="src/index.ts"
+          if [ -f "src/index.tsx" ]; then ENTRY="src/index.tsx"; fi
+          if [ -f "src/index.js" ]; then ENTRY="src/index.js"; fi
+          if [ -f "src/index.jsx" ]; then ENTRY="src/index.jsx"; fi
+          if [ -f "src/Root.tsx" ]; then ENTRY="src/Root.tsx"; fi
+          if [ -f "index.ts" ]; then ENTRY="index.ts"; fi
+          if [ -f "index.tsx" ]; then ENTRY="index.tsx"; fi
+
+          COMP=""
+          if [ -f ".composition_id" ]; then
+            COMP=$(cat .composition_id | tr -d '\r\n ')
+          fi
+
+          echo "Detected entry: $ENTRY, composition: $COMP"
+          if [ -n "$COMP" ]; then
+            npx remotion render "$ENTRY" "$COMP" out/video.mp4 --concurrency=2 --gl=angle
+          else
+            npx remotion render "$ENTRY" out/video.mp4 --concurrency=2 --gl=angle
+          fi
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v4
@@ -41,10 +59,11 @@ jobs:
           path: out/video.mp4
           retention-days: 7
 
-      - name: Create GitHub Release
+      - name: Update GitHub Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          gh release delete v1.0.0 --yes || true
           gh release create v1.0.0 out/video.mp4 \
             --title "Hasil Render Video: Materi Pembelajaran Dasar Terminal" \
             --notes "Video berhasil dirender menggunakan Remotion via GitHub Actions." || true
