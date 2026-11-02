@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {C, CHAPTERS, TOTAL, sec} from './theme';
+import {AUDIO_FILE} from './timeline';
 import {display} from './fonts';
 import {clamp} from './anim';
 import {Background} from './components/Background';
@@ -90,7 +91,7 @@ const PauseBadge: React.FC<{id: string; active: number}> = ({id, active}) => {
 export const Video: React.FC = () => (
   <AbsoluteFill>
     <Background />
-    <Audio src={staticFile('narasi10.mp3')} />
+    <Audio src={staticFile(AUDIO_FILE)} />
     <Audio src={staticFile('sfx/bed.wav')} loop volume={0.1} />
     {CHAPTERS.map((c, i) => {
       const from = sec(c.start);
