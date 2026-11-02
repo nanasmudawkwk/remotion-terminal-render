@@ -21,8 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
@@ -48,4 +47,4 @@ jobs:
         run: |
           gh release create v1.0.0 out/video.mp4 \
             --title "Hasil Render Video: Materi Pembelajaran Dasar Terminal" \
-            --notes "Video berhasil dirender menggunakan Remotion via GitHub Actions."
+            --notes "Video berhasil dirender menggunakan Remotion via GitHub Actions." || true
