@@ -1,0 +1,21 @@
+{
+  "name": "remotion-terminal-render",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Video Pembelajaran Dasar Terminal via Remotion dan GitHub Actions",
+  "scripts": {
+    "build": "remotion render src/index.ts TerminalLesson out/video.mp4"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.539",
+    "@remotion/cli": "^4.0.539",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.4.5"
+  }
+}
