@@ -1,18 +1,26 @@
 import React from 'react';
-import { Composition } from 'remotion';
-import { TerminalLesson } from './TerminalLesson';
+import {Composition} from 'remotion';
+import {Video} from './Video';
+import {Short} from './Short';
+import {FPS, TOTAL} from './theme';
 
-export const RemotionRoot: React.FC = () => {
-  return (
-    <>
-      <Composition
-        id="TerminalLesson"
-        component={TerminalLesson}
-        durationInFrames={3960}
-        fps={30}
-        width={1280}
-        height={720}
-      />
-    </>
-  );
-};
+export const RemotionRoot: React.FC = () => (
+  <>
+  <Composition
+    id="Terminal15s"
+    component={Short}
+    durationInFrames={450}
+    fps={FPS}
+    width={1920}
+    height={1080}
+  />
+  <Composition
+    id="BelajarTerminal"
+    component={Video}
+    durationInFrames={TOTAL}
+    fps={FPS}
+    width={1920}
+    height={1080}
+  />
+  </>
+);
