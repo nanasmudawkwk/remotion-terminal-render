@@ -1,10 +1,17 @@
 import React from 'react';
 import {Composition} from 'remotion';
-import {Video} from './Video';
-import {FPS} from './theme';
-import {TOTAL} from './timeline';
+import {Main} from './Main';
+import {FPS, HEIGHT, TOTAL_FRAMES, WIDTH} from './timing';
 
-// HANYA satu komposisi: "DDoS" (116,8 detik, mengikuti voice)
-export const RemotionRoot: React.FC = () => (
-  <Composition id="DDoS" component={Video} durationInFrames={TOTAL} fps={FPS} width={1920} height={1080} />
-);
+export const RemotionRoot: React.FC = () => {
+  return (
+    <Composition
+      id="Main"
+      component={Main}
+      durationInFrames={TOTAL_FRAMES}
+      fps={FPS}
+      width={WIDTH}
+      height={HEIGHT}
+    />
+  );
+};
