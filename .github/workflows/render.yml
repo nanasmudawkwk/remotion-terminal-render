@@ -53,7 +53,7 @@ jobs:
           fi
 
           echo "Rendering with entry: $ENTRY, composition: $COMP"
-          npx remotion render "$ENTRY" "$COMP" out/video.mp4 --concurrency=2 --gl=angle
+          npx remotion render "$ENTRY" "$COMP" out/video.mp4 --concurrency=2 --gl=angle --crf=24 --pixel-format=yuv420p
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v4
