@@ -1,23 +1,14 @@
 import React from 'react';
 import {Audio, Sequence, staticFile} from 'remotion';
+import {FPS} from '../theme';
+import {SFX} from '../sfxPlan';
 
-export type SfxItem = {at: number; f: string; v?: number; d?: number};
-
-export const Sfx: React.FC<{list: SfxItem[]; master?: number}> = ({list, master = 1}) => (
+export const SfxLayer: React.FC = () => (
   <>
-    {list.map((s, i) => (
-      <Sequence key={i} from={Math.max(0, Math.round(s.at))} durationInFrames={s.d ?? 40}>
-        <Audio src={staticFile(`sfx/${s.f}.wav`)} volume={(s.v ?? 1) * master} />
+    {SFX.map((s, i) => (
+      <Sequence key={i} from={Math.max(0, Math.round(s.t * FPS))} durationInFrames={Math.max(4, Math.round((s.d ?? 1.2) * FPS))}>
+        <Audio src={staticFile(`sfx/${s.f}.wav`)} volume={s.v ?? 0.6} />
       </Sequence>
     ))}
   </>
 );
-
-/** klik papan ketik tiap `step` huruf */
-export const typeClicks = (start: number, len: number, cps: number, v = 0.3, step = 2): SfxItem[] =>
-  Array.from({length: Math.ceil(len / step)}, (_, i) => ({
-    at: start + Math.ceil((i * step) / cps),
-    f: `click${(i % 3) + 1}`,
-    v,
-    d: 6,
-  }));

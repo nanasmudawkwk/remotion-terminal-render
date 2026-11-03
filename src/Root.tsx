@@ -1,16 +1,10 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {Video} from './Video';
-import {FPS, TOTAL} from './theme';
+import {FPS} from './theme';
+import {TOTAL} from './timeline';
 
-// HANYA satu komposisi: BelajarTerminal (10 menit = 18.000 frame)
+// HANYA satu komposisi: "DDoS" (116,8 detik, mengikuti voice)
 export const RemotionRoot: React.FC = () => (
-  <Composition
-    id="BelajarTerminal"
-    component={Video}
-    durationInFrames={TOTAL}
-    fps={FPS}
-    width={1920}
-    height={1080}
-  />
+  <Composition id="DDoS" component={Video} durationInFrames={TOTAL} fps={FPS} width={1920} height={1080} />
 );

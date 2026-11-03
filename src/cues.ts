@@ -1,0 +1,30 @@
+export type Cue = {s: number; e: number; t: string};
+
+// s/e = detik mulai/selesai ucapan pada voice (dideteksi dari jeda audio).
+export const CUES: Cue[] = [
+  {s: 0.0, e: 2.49, t: 'Apa itu DDoS dan bagaimana cara mengatasinya?'},
+  {s: 3.49, e: 8.04, t: 'Pernah melihat sebuah website tiba-tiba tidak bisa diakses, padahal koneksi internet kamu normal?'},
+  {s: 9.04, e: 11.69, t: 'Bisa jadi website tersebut sedang mengalami serangan DDoS.'},
+  {s: 12.74, e: 13.51, t: 'Apa itu DDoS?'},
+  {s: 14.52, e: 24.07, t: 'DDoS atau Distributed Denial of Service adalah serangan yang bertujuan membuat server atau website tidak bisa melayani pengguna normal dengan cara membanjirinya menggunakan trafik atau permintaan dalam jumlah sangat besar.'},
+  {s: 25.11, e: 26.38, t: 'Bagaimana cara kerjanya?'},
+  {s: 27.86, e: 31.77, t: 'Bayangkan sebuah restoran yang hanya mampu melayani 100 pelanggan dalam satu waktu.'},
+  {s: 32.76, e: 33.39, t: 'Tiba-tiba,'},
+  {s: 33.86, e: 36.76, t: 'ribuan orang datang secara bersamaan dan memenuhi seluruh tempat.'},
+  {s: 37.79, e: 41.47, t: 'Akibatnya, pelanggan asli tidak bisa masuk dan mendapatkan pelayanan.'},
+  {s: 42.46, e: 44.56, t: 'Kurang lebih seperti itulah cara kerja DDoS.'},
+  {s: 45.54, e: 52.63, t: 'Penyerang menggunakan banyak perangkat atau jaringan yang sudah dikuasai, sering kali disebut botnet, untuk mengirimkan trafik secara bersamaan ke target.'},
+  {s: 54.1, e: 62.43, t: 'Akibatnya, bandwidth, CPU, RAM, atau kapasitas koneksi server bisa kewalahan hingga website menjadi lambat bahkan tidak dapat diakses.'},
+  {s: 63.43, e: 65.55, t: 'Lalu, bagaimana cara mengatasinya?'},
+  {s: 66.6, e: 68.49, t: 'Ada beberapa langkah yang bisa dilakukan:'},
+  {s: 69.49, e: 74.08, t: 'Gunakan layanan proteksi seperti Cloudflare untuk membantu menyaring trafik berbahaya.'},
+  {s: 75.07, e: 79.29, t: 'Terapkan Rate Limiting untuk membatasi jumlah request dari sumber tertentu.'},
+  {s: 80.29, e: 84.18, t: 'Gunakan Firewall atau WAF untuk memfilter permintaan mencurigakan.'},
+  {s: 87.18, e: 90.72, t: 'Gunakan Load Balancer agar beban trafik dapat dibagi ke beberapa server.'},
+  {s: 91.74, e: 95.55, t: 'Hubungi penyedia hosting atau ISP jika serangan sudah terlalu besar.'},
+  {s: 96.57, e: 97.31, t: 'Kesimpulan:'},
+  {s: 98.29, e: 105.48, t: 'DDoS bukan sekadar membuat website down, tetapi merupakan serangan yang menyalahgunakan kapasitas layanan agar pengguna asli tidak bisa mengaksesnya.'},
+  {s: 106.45, e: 110.17, t: 'Karena itu, keamanan server dan sistem proteksi trafik sangat penting.'},
+  {s: 111.17, e: 112.56, t: 'Sekian penjelasan kali ini.'},
+  {s: 113.57, e: 115.84, t: 'Jangan lupa terus belajar tentang cybersecurity!'},
+];
